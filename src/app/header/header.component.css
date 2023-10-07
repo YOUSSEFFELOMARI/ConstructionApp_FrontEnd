@@ -8,3 +8,11 @@
   color: white;
   text-align: center;
 }
+
+@media (max-width: 994px) { /* Adjust the screen width as needed */
+  .navbar-nav {
+    display: flex;
+    justify-content: center;
+    text-align: center; /* Center the text within each link */
+  }
+}

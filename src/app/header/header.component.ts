@@ -1,4 +1,6 @@
-import {Component, Input} from '@angular/core';
+import {Component} from '@angular/core';
+import {AuthService} from "../services/auth-service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -6,6 +8,12 @@ import {Component, Input} from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  @Input() pageTitle!: string;
-  @Input() logoSrc!: string;
+  isAuthenticated!: boolean;
+  constructor(private authService:AuthService, private router:Router) {
+    this.isAuthenticated=authService.isAuthenticated;
+  }
+
+  handleLogout() {
+    this.authService.logout();
+  }
 }

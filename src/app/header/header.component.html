@@ -1,4 +1,33 @@
-<div class="app-header">
-  <img src="{{logoSrc}}" class="app-logo" alt="logo">
-  <h1 class="app-title">{{pageTitle}}</h1>
-</div>
+<header>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <div class="container "> <!-- Wrap your content in a container to control the width -->
+      <a class="navbar-brand" routerLink="#">Your Brand</a>
+<!--      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--        <span class="navbar-toggler-icon"></span>-->
+<!--      </button>-->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto" > <!-- Add ml-auto to align menu to the right -->
+          <li class="nav-item active mx-3" >
+            <a class="nav-link" routerLink="#">Home</a>
+          </li>
+          <li class="nav-item mx-3">
+            <a class="nav-link" routerLink="#">Features</a>
+          </li>
+          <li class="nav-item mx-3">
+            <a class="nav-link" routerLink="#">Pricing</a>
+          </li>
+          <li class="nav-item mx-3">
+            <a class="nav-link" routerLink="#">About</a>
+          </li>
+        </ul>
+      </div>
+      <button class="btn btn-danger" (click)="handleLogout()" *ngIf="isAuthenticated" routerLink="#">Logout</button>
+    </div> <!-- Close the container -->
+  </nav>
+
+
+
+  <!-- Jumbotron -->
+  <!-- Jumbotron -->
+</header>

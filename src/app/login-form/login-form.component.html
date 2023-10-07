@@ -1,0 +1,49 @@
+<!-- Section: Design Block -->
+<section class="text-center">
+  <!-- Background image -->
+  <div class="p-5 bg-image" style="
+        background-image: url('https://commercial.allianz.com/content/onemarketing/commercial/commercial/en_GB/news-and-insights/reports/global-industry-solution-outlook-2023-construction.thumb.1280.1280.png?ck=1693564996');
+        height: 60vh;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        "></div>
+  <!-- Background image -->
+
+  <div class="card mx-4 mx-md-5 shadow-5-strong" style="
+        margin-top: -30vh;
+        background: hsla(0, 0%, 100%, 0.6);
+        backdrop-filter: blur(30px);
+        ">
+    <div class="card-body py-5 px-md-5">
+
+      <div class="row d-flex justify-content-center">
+        <div class="col-lg-8">
+          <h2 class="fw-bold mb-5">Login now</h2>
+
+
+          <form [formGroup]="formLogin" (ngSubmit)="handleLogin()">
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+              <input type="text" id="loginName" class="form-control form-control-lg"
+                      formControlName="email" />
+              <label class="col-form-label" for="loginName">User Name</label>
+            </div>
+
+            <!-- Password input -->
+            <div class="form-outline mb-4">
+              <input type="password" id="loginPassword" class="form-control form-control-lg"
+                      formControlName="password" />
+              <label class="col-form-label" for="loginPassword">Password</label>
+            </div>
+
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-primary w-100 btn-block mb-4"> Sign up </button>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Section: Design Block -->
