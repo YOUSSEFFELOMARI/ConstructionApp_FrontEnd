@@ -9,12 +9,6 @@ import {Router} from "@angular/router";
   styleUrls: ['./login-form.component.css']
 })
 export class LoginFormComponent {
-  // @Output() onSubmitLoginEvent = new EventEmitter();
-  // email:string="";
-  // password:string="";
-  // onSubmitLogin(){
-  //   this.onSubmitLoginEvent.emit({"email":this.email,"password":this.password})
-  // }
 
   formLogin !: FormGroup;
   constructor(private fb:FormBuilder, private authService:AuthService,
@@ -34,7 +28,7 @@ export class LoginFormComponent {
     this.authService.login(email,pwd).subscribe({
       next: data => {
         this.authService.loadProfile(data);
-        this.router.navigateByUrl("/admin")
+        this.router.navigateByUrl("/admin/employee")
       },
       error:err => {
         console.log(err)

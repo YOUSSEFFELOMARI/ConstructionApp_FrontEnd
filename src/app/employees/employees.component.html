@@ -1,16 +1,33 @@
 <div class="card">
+
   <div class="card-header">
-    <p class="card-title">Employees</p>
-    <form class="row g-3">
-      <div class="col">
-        <label for="inputPassword2" class="visually-hidden">Password</label>
-        <input type="password" class="form-control" id="inputPassword2" placeholder="Password">
+    <div class="container-fluid">
+<!--      <div class="row">-->
+      <div class="row align-items-center">
+          <div class="col-lg-6 col-md-6 col-12" >
+            <h3 class="card-title mb-0">Employees</h3>
+          </div>
+          <div class="col-lg-5 col-md-6 col-12">
+            <form class="row">
+              <div class="col-auto" >
+                <label for="inputPassword2" class="visually-hidden">Name & LastName</label>
+                <input type="text" class="form-control" id="inputPassword2" placeholder="Name & LastName">
+              </div>
+              <div class="col-auto" >
+                <button type="submit" class="btn btn-primary ">Search </button>
+              </div>
+              <div class="col-auto" >
+                <button type="submit" class="btn btn-primary btn-block">Add Employee</button>
+              </div>
+            </form>
+          </div>
+<!--        </div>-->
       </div>
-      <div class="col-auto">
-        <button type="submit" class="btn btn-primary mb-3">Confirm identity</button>
-      </div>
-    </form>
+    </div>
   </div>
+
+
+
   <div class="card-body">
     <div class="table-responsive">
       <table class="table align-middle mb-0 bg-white">
@@ -20,6 +37,8 @@
           <th>Home Address</th>
           <th>Salary</th>
           <th>Phone Number</th>
+          <th>Actual Month</th>
+          <th>Construction Site</th>
           <th>Actions</th>
         </tr>
         </thead>
@@ -47,11 +66,24 @@
             <span class="badge bg-success rounded-pill d-inline">{{e.salary}}</span>
           </td>
           <td>
-            <span class="badge bg-info text-dark rounded-pill d-inline" >{{e.phone}}</span>
+            <span>{{e.phone}}</span>
           </td>
           <td>
-            <button type="button" class="btn btn-link btn-sm btn-rounded">
-              Edit
+            <span class="badge rounded-pill d-inline"
+                  [ngClass]="{'bg-info text-dark': e.months[0].payed,  'bg-danger text-light': !e.months[0].payed}"
+                  *ngIf="e.months[0] != null">
+              {{ e!.months[0].date | date:'MM-yyyy' }} {{ e.months[0].payed ? 'Yes' : 'No' }}
+            </span>
+          </td>
+          <td>
+            <span *ngIf="e?.constructionSiteDto" >
+                {{e.constructionSiteDto.address}}
+            </span>
+          </td>
+          <td>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" (click)="openEditEmployeeModel()">
+              update
             </button>
           </td>
         </tr>
@@ -60,17 +92,20 @@
       </table>
       <div class="pagination">
         <nav aria-label="Page navigation example">
-          <ul class="pagination">
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Previous">
+          <ul class="pagination justify-content-end ">
+            <li >
+              <a class="btn btn-outline-info ms-1 mt-1" >
                 <span aria-hidden="true">&laquo;</span>
               </a>
             </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next">
+<!--            <li class="page-item"><a class="page-link" href="#">1</a></li>-->
+            <li
+              *ngFor="let page of pageNumbers;" >
+              <a [ngClass]="page==currentPage?'btn-info':'btn-outline-info'" (click)="gotoPage(page)"
+                class="btn ms-1 mt-1">{{page}}</a>
+            </li>
+            <li>
+              <a class="btn btn-outline-info ms-1 mt-1">
                 <span aria-hidden="true">&raquo;</span>
               </a>
             </li>
@@ -80,3 +115,64 @@
     </div>
   </div>
 </div>
+
+
+<!-- Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Employee Information</h4>
+        <button type="button" (click)="closeEditEmployeeModel()" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div class="container">
+          <form>
+            <div class="mb-3">
+              <label for="employerId" class="form-label">Employer ID</label>
+              <input type="number" class="form-control" id="employerId" name="employerId" value="2">
+            </div>
+            <div class="mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input type="text" class="form-control" id="name" name="name" value="Youssef2">
+            </div>
+            <div class="mb-3">
+              <label for="lastName" class="form-label">Last Name</label>
+              <input type="text" class="form-control" id="lastName" name="lastName" value="Elomari2">
+            </div>
+            <div class="mb-3">
+              <label for="homeAddress" class="form-label">Home Address</label>
+              <input type="text" class="form-control" id="homeAddress" name="homeAddress" value="agadir">
+            </div>
+            <div class="mb-3">
+              <label for="salary" class="form-label">Salary</label>
+              <input type="number" class="form-control" id="salary" name="salary" value="11111.0">
+            </div>
+            <div class="mb-3">
+              <label for="phone" class="form-label">Phone</label>
+              <input type="tel" class="form-control" id="phone" name="phone" value="0655487895">
+            </div>
+            <div class="mb-3">
+              <label for="constructionSiteName" class="form-label">Construction Site Name</label>
+              <input type="text" class="form-control" id="constructionSiteName" name="constructionSiteName" value="ter">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+
+
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="closeEditEmployeeModel()" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+

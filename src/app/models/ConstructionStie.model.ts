@@ -1,4 +1,4 @@
-export interface ConstructionStie{
+export interface ConstructionStieDto{
   name:string;
   startDate:string;
   endDate:string;

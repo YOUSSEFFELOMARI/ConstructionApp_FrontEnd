@@ -13,6 +13,8 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import {AppHttpInterceptor} from "./interceptors/app-http.interceptor";
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { EmployeesComponent } from './employees/employees.component';
+import { MonthsComponent } from './months/months.component';
+import { ConstructionSitesComponent } from './construction-sites/construction-sites.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { EmployeesComponent } from './employees/employees.component';
     FooterComponent,
     AdminDashboardComponent,
     SideBarComponent,
-    EmployeesComponent
+    EmployeesComponent,
+    MonthsComponent,
+    ConstructionSitesComponent
   ],
     imports: [
         BrowserModule,

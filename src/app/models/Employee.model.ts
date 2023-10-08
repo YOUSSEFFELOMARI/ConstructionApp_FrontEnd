@@ -1,5 +1,5 @@
 import {Month} from "./Month.model";
-import {ConstructionStie} from "./ConstructionStie.model";
+import {ConstructionStieDto} from "./ConstructionStie.model";
 
 export interface Employee{
   name: string;
@@ -8,5 +8,5 @@ export interface Employee{
   salary:string;
   phone:string;
   months: Month[];
-  constructionSite:ConstructionStie;
+  constructionSiteDto:ConstructionStieDto;
 }

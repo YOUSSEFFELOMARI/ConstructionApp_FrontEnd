@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {map, Observable} from "rxjs";
 import {Employee} from "../models/Employee.model";
 import {environment} from "../../environments/environment";
 
@@ -31,7 +31,13 @@ export class EmployeeService {
     return this.http.delete(environment.backendHost+`/Employees`)
   }
 
-  public countEmployees():any{
-    return this.http.get(environment.backendHost+`/Employees/count`)
+  public countEmployees():Observable<number>{
+    return this.http.get<any>(environment.backendHost + '/Employees/count')
+      .pipe(
+        map((response: any) => {
+          // Assuming your API returns the count as a number, you may need to parse it if it's a string
+          return parseInt(response, 10);
+        })
+      );
   }
 }
