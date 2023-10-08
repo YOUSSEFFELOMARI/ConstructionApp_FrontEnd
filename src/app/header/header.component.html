@@ -2,10 +2,18 @@
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-light bg-white">
     <div class="container "> <!-- Wrap your content in a container to control the width -->
-      <a class="navbar-brand" routerLink="#">Your Brand</a>
-<!--      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">-->
-<!--        <span class="navbar-toggler-icon"></span>-->
-<!--      </button>-->
+      <a class="navbar-brand" routerLink="#" style="font-size:25px;  font-family:Arial; text-align: center">
+        <img
+          id="logo"
+          src="https://images.crunchbase.com/c_lpad,h_256,w_256,f_auto,q_auto:eco,dpr_1/lhu4bcyncyneii8vjilg"
+          alt="Logo"
+          draggable="false"
+          height="70"
+        />
+        Construction</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mx-auto" > <!-- Add ml-auto to align menu to the right -->
           <li class="nav-item active mx-3" >
@@ -22,7 +30,7 @@
           </li>
         </ul>
       </div>
-      <button class="btn btn-danger" (click)="handleLogout()" *ngIf="isAuthenticated" routerLink="#">Logout</button>
+      <button class="btn btn-outline-danger" (click)="handleLogout()" *ngIf="isAuthenticated" >Logout</button>
     </div> <!-- Close the container -->
   </nav>
 

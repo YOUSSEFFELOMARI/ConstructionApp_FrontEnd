@@ -11,6 +11,8 @@ import { FooterComponent } from './footer/footer.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import {AppHttpInterceptor} from "./interceptors/app-http.interceptor";
+import { SideBarComponent } from './side-bar/side-bar.component';
+import { EmployeesComponent } from './employees/employees.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import {AppHttpInterceptor} from "./interceptors/app-http.interceptor";
     LoginFormComponent,
     LoginPageComponent,
     FooterComponent,
-    AdminDashboardComponent
+    AdminDashboardComponent,
+    SideBarComponent,
+    EmployeesComponent
   ],
     imports: [
         BrowserModule,

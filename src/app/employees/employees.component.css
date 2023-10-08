@@ -1,0 +1,27 @@
+/* Center the pagination and apply some styling */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px; /* Add margin for spacing */
+}
+
+/* Style the pagination links */
+.page-link {
+  color: #007bff; /* Link color */
+  background-color: #fff; /* Background color */
+  border: 1px solid #dee2e6; /* Border color */
+  margin: 2px; /* Add spacing between links */
+}
+
+/* Style the active page link */
+.page-item.active .page-link {
+  background-color: #007bff; /* Active link background color */
+  color: #fff; /* Active link text color */
+  border: 1px solid #007bff; /* Active link border color */
+}
+
+/* Style the previous and next arrows */
+.page-item span {
+  font-size: 20px; /* Adjust font size */
+}

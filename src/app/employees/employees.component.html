@@ -1,0 +1,82 @@
+<div class="card">
+  <div class="card-header">
+    <p class="card-title">Employees</p>
+    <form class="row g-3">
+      <div class="col">
+        <label for="inputPassword2" class="visually-hidden">Password</label>
+        <input type="password" class="form-control" id="inputPassword2" placeholder="Password">
+      </div>
+      <div class="col-auto">
+        <button type="submit" class="btn btn-primary mb-3">Confirm identity</button>
+      </div>
+    </form>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table align-middle mb-0 bg-white">
+        <thead class="bg-light">
+        <tr>
+          <th>Name | Last Name</th>
+          <th>Home Address</th>
+          <th>Salary</th>
+          <th>Phone Number</th>
+          <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let e of employees | async">
+          <td>
+            <div class="d-flex align-items-center">
+              <img
+                src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                alt=""
+                style="width: 45px; height: 45px"
+                class="rounded-circle"
+              />
+              <div class="ms-3">
+                <p class="fw-bold mb-1">{{e.name+" "+e.lastName}}</p>
+                <p class="text-muted mb-0">{{e.lastName}}</p>
+              </div>
+            </div>
+          </td>
+          <td>
+            <p class="fw-normal mb-1">{{e.homeAddress}}</p>
+
+          </td>
+          <td>
+            <span class="badge bg-success rounded-pill d-inline">{{e.salary}}</span>
+          </td>
+          <td>
+            <span class="badge bg-info text-dark rounded-pill d-inline" >{{e.phone}}</span>
+          </td>
+          <td>
+            <button type="button" class="btn btn-link btn-sm btn-rounded">
+              Edit
+            </button>
+          </td>
+        </tr>
+
+        </tbody>
+      </table>
+      <div class="pagination">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
