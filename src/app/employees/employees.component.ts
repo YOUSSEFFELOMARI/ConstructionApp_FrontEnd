@@ -1,9 +1,18 @@
-import {Component} from '@angular/core';
-import {catchError, Observable, throwError} from "rxjs";
+import {Component, ViewChild} from '@angular/core';
+import {catchError, map, Observable, throwError} from "rxjs";
 import {Employee} from "../models/Employee.model";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {EmployeeService} from "../services/Employee.service";
 import {Router} from "@angular/router";
+import {Month} from "../models/Month.model";
+import {MonthService} from "../services/month.service";
+import {MatDialog} from "@angular/material/dialog";
+import {SaveEmplyeeModalComponent} from "./save-emplyee-modal/save-emplyee-modal.component";
+import {MatTableDataSource} from "@angular/material/table";
+import {MatPaginator} from "@angular/material/paginator";
+import {MatSort} from "@angular/material/sort";
+import {UpdateEmplyeeComponent} from "./update-emplyee/update-emplyee.component";
+import {UpdateMonthComponent} from "./update-month/update-month.component";
 
 
 @Component({
@@ -13,35 +22,80 @@ import {Router} from "@angular/router";
 })
 export class EmployeesComponent {
 
+  displayedColumns: string[] = [
+    'employerId','name', 'lastName','months','constructionSiteDto','salary', 'homeAddress'
+    , 'phone', 'action'
+    ];
+  dataSource!: MatTableDataSource<any>;
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+
   employees !: Observable<Array<Employee>>;
   errorMessage!: string;
-  searchFormGroup : FormGroup | undefined;
   currentPage : number =1;
   pageSize : number =5;
   pageNumbers: number[] = [];
 
-  constructor(private employeeService:EmployeeService,private formBuilder:FormBuilder,
-              private router:Router) {}
+  constructor(private employeeService:EmployeeService
+                ,private formBuilder:FormBuilder
+                ,private router:Router
+                ,private _dialog:MatDialog) {}
+
+  openSaveEmployeeModal(){
+    this._dialog.open(SaveEmplyeeModalComponent);
+  }
 
   ngOnInit(){
-    this.employees=this.employeeService.getEmployee(this.currentPage,this.pageSize).pipe(
-      catchError(err => {
-        this.errorMessage=err.message;
-        return throwError(err);
-      })
-    );
+    this.getEmployeesList();
+    this.getEmployeesPages();
     this.numberOfpages();
   }
 
-  handleEditeEmployee(e: Employee) {
-
+  getEmployeesPages(){
+    this.employees = this.employeeService.getEmployees(this.currentPage, this.pageSize).pipe(
+      catchError(err => {
+        this.errorMessage = err.message;
+        return throwError(err);
+      }),
+      map(employees => {
+        // Sort the months within each employee in descending order (most recent to oldest)
+        return employees.map(employee => ({
+          ...employee,
+          months: employee.months.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+        }));
+      })
+    );
   }
 
-  openEditEmployeeModel() {
-    let modelDev=document.getElementById('myModal');
-    if (modelDev != null){
-      modelDev.style.display='block';
-    }
+// ...
+
+getEmployeesList() {
+  this.employeeService.getAllEmployeesList().pipe(
+      map((employees) => {
+        // Sort the months within each employee in descending order (most recent to oldest)
+        return employees.map((employee) => ({
+          ...employee,
+          months: employee.months.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+        }));
+      })
+  ).subscribe({
+    next: (res) => {
+      this.dataSource = new MatTableDataSource<any>(res);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+    },
+    error: (err) => {
+      this.errorMessage = err.message;
+    },
+  });
+}
+
+
+openEditEmployeeModel(data:any) {
+    this._dialog.open(UpdateEmplyeeComponent,{
+      data,
+    })
   }
 
   closeEditEmployeeModel() {
@@ -53,7 +107,7 @@ export class EmployeesComponent {
 
   gotoPage(page: number) {
     this.currentPage=page;
-    this.employees=this.employeeService.getEmployee(page,this.pageSize).pipe(
+    this.employees=this.employeeService.getEmployees(page,this.pageSize).pipe(
       catchError(err => {
         this.errorMessage=err.message;
         return throwError(err);
@@ -70,4 +124,29 @@ export class EmployeesComponent {
 
 
 
+  applyFilter(event: Event) {
+      const filterValue = (event.target as HTMLInputElement).value;
+      this.dataSource.filter = filterValue.trim().toLowerCase();
+
+      if (this.dataSource.paginator) {
+        this.dataSource.paginator.firstPage();
+      }
+    }
+
+  deleteEmployee(id:number){
+    console.log(id)
+    this.employeeService.deleteEMployee(id).subscribe({
+      next:(value)=>{
+        this.getEmployeesList();
+        //TODO:open message to confirme deletion
+      },
+      error: (err)=> throwError(err)
+    })
+  }
+
+  openUpdateMonthModal(data:any) {
+    this._dialog.open(UpdateMonthComponent,{
+      data,
+    })
+  }
 }

@@ -1,7 +1,9 @@
-<header>
+
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-white">
-    <div class="container "> <!-- Wrap your content in a container to control the width -->
+  <div class="dov">
+
+  <div class="navbar navbar-expand-lg ">
+    <div class="container ">
       <a class="navbar-brand" routerLink="#" style="font-size:25px;  font-family:Arial; text-align: center">
         <img
           id="logo"
@@ -30,12 +32,7 @@
           </li>
         </ul>
       </div>
-      <button class="btn btn-outline-danger" (click)="handleLogout()" *ngIf="isAuthenticated" >Logout</button>
+      <button mat-stroked-button color="warn" (click)="handleLogout()" *ngIf="authService.isAuthenticated" >Logout</button>
     </div> <!-- Close the container -->
-  </nav>
-
-
-
-  <!-- Jumbotron -->
-  <!-- Jumbotron -->
-</header>
+  </div>
+  </div>

@@ -43,7 +43,7 @@ export class AuthService {
     let token = window.localStorage.getItem("token");
     if (token){
       this.loadProfile({"token" : token});
-      this.router.navigateByUrl("/admin")
+      this.router.navigateByUrl("/admin/employee")
     }
   }
 }

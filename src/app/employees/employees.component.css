@@ -25,3 +25,74 @@
 .page-item span {
   font-size: 20px; /* Adjust font size */
 }
+
+#card1{
+  margin-bottom: 20px;
+}
+.changeMonth{
+  font-size:large;
+}
+
+
+
+section {
+  display: table;
+}
+
+.example-label {
+  display: table-cell;
+  font-size: 14px;
+  margin-left: 8px;
+  min-width: 120px;
+}
+
+.example-button-row {
+  display: table-cell;
+  max-width: 600px;
+}
+
+.example-button-row .mat-mdc-button-base {
+  margin: 8px 8px 8px 0;
+}
+
+.example-flex-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.example-button-container {
+  display: flex;
+  justify-content: center;
+  width: 120px;
+}
+.card-header{
+  height: 60px
+}
+
+
+table {
+  width: 100%;
+}
+.d-flex{
+  justify-content: space-between;
+}
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td, th {
+  width: 25%;
+  /*text-align: center;*/
+}
+
+.example-card {
+  max-width: 100%;
+}
+.table-container{
+  width: 100%; overflow-x: auto;
+}
+.card2, .card{
+  background-color: rgba(220, 220, 222, 0.49);
+}

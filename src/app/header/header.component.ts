@@ -8,9 +8,8 @@ import {Router} from "@angular/router";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  isAuthenticated!: boolean;
-  constructor(private authService:AuthService, private router:Router) {
-    this.isAuthenticated=authService.isAuthenticated;
+  // isAuthenticated!: boolean;
+  constructor(public authService:AuthService, private router:Router) {
   }
 
   handleLogout() {
