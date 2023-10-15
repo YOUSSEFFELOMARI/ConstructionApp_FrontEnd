@@ -5,12 +5,14 @@ import {AdminDashboardComponent} from "./admin-dashboard/admin-dashboard.compone
 import {authGuard} from "./auth.guard";
 import {EmployeesComponent} from "./employees/employees.component";
 import {ConstructionSitesComponent} from "./construction-sites/construction-sites.component";
-import {MonthsComponent} from "./months/months.component";
+import {MonthsComponent} from "./employees/months/months.component";
+import {HomePageComponent} from "./home-page/home-page.component";
 
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch:"full"},
   {path: 'login' ,component: LoginPageComponent},
+  {path: 'home' ,component: HomePageComponent},
   {path:'admin', component: AdminDashboardComponent, canActivate: [authGuard], children :[
       {path: 'employee' ,component: EmployeesComponent},
       {path: 'constructionSite' ,component: ConstructionSitesComponent},

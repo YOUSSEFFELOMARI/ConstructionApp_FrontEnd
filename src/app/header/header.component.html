@@ -19,20 +19,17 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mx-auto" > <!-- Add ml-auto to align menu to the right -->
           <li class="nav-item active mx-3" >
-            <a class="nav-link" routerLink="#">Home</a>
+            <a class="nav-link" routerLink="home">Home</a>
           </li>
-          <li class="nav-item mx-3">
-            <a class="nav-link" routerLink="#">Features</a>
-          </li>
-          <li class="nav-item mx-3">
-            <a class="nav-link" routerLink="#">Pricing</a>
+          <li class="nav-item active mx-3" >
+            <a class="nav-link" routerLink="login">DashBoard</a>
           </li>
           <li class="nav-item mx-3">
             <a class="nav-link" routerLink="#">About</a>
           </li>
         </ul>
       </div>
-      <button mat-stroked-button color="warn" (click)="handleLogout()" *ngIf="authService.isAuthenticated" >Logout</button>
+      <button mat-raised-button color="warn" (click)="handleLogout()" *ngIf="authService.isAuthenticated" >Logout</button>
     </div> <!-- Close the container -->
   </div>
   </div>

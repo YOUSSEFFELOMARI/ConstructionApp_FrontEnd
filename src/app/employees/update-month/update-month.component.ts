@@ -3,6 +3,7 @@ import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {catchError, throwError} from "rxjs";
 import {DialogRef} from "@angular/cdk/dialog";
 import {MonthService} from "../../services/month.service";
+import {CoreService} from "../../services/core/core-service.service";
 
 @Component({
   selector: 'app-update-month',
@@ -12,7 +13,7 @@ import {MonthService} from "../../services/month.service";
 export class UpdateMonthComponent implements OnInit{
 
   constructor(@Inject(MAT_DIALOG_DATA) public data:any,private monthService:MonthService,
-              private dialogref:DialogRef<UpdateMonthComponent>) {
+              private dialogref:DialogRef<UpdateMonthComponent>,private coreService:CoreService) {
   }
 
   ngOnInit() {
@@ -26,17 +27,12 @@ export class UpdateMonthComponent implements OnInit{
       this.data.months[0].payed=!this.data.months[0].payed;
       this.monthService.updateMonth(this.data.months[0]).subscribe({
         next:(value)=>{
-          this.dialogref.close();
-      },
+            this.coreService.openSnackBar('Month Updated','done');
+            this.dialogref.close();      },
         error:(err)=>{
-          //TODO message
-          console.log(err)
+            this.coreService.openSnackBar(err);
         }
       });
     }
-      // console.log(this.data)
-    // this.data.month[0]=!this.data.month[0];
-
-    //
   }
 }

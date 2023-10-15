@@ -16,6 +16,7 @@ export class LoginFormComponent {
   }
 
   ngOnInit(){
+    this.authService.loadJwtToken();
     this.formLogin= this.fb.group({
       email : this.fb.control(""),
       password : this.fb.control(""),

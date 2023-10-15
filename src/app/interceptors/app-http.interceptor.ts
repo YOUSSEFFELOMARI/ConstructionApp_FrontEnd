@@ -14,9 +14,11 @@ export class AppHttpInterceptor implements HttpInterceptor {
   constructor(private authService:AuthService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+
     if(!request.url.includes("/login")){
+      // console.log(this.authService.loadJwtToken())
       let newReq=request.clone({
-        headers: request.headers.set('Autorization', `Bearer ${this.authService.accessToken}`)
+        headers: request.headers.set('Authorization', `Bearer ${window.localStorage.getItem("token")}`)
       });
       return next.handle(newReq).pipe(
           catchError(err => {

@@ -1,0 +1,11 @@
+.container{
+  width: 75vw;
+  height: 80vh;
+}
+.d-flex{
+  justify-content: space-between;
+}
+.monthcard{
+  background-color: rgba(170, 170, 183, 0.49);
+
+}

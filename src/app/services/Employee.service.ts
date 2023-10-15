@@ -27,7 +27,7 @@ export class EmployeeService {
     return this.http.post<Employee>(environment.backendHost+`/Employees`,emplyee);
   }
 
-  public updateEmployee(employee: { employerId: any; lastName: any; months: void | undefined; phone: any; name: any; constructionSiteDto: { name: any; startDate: any; endDate: any; address: any } | undefined; salary: any; homeAddress: any }):Observable<Employee>{
+  public updateEmployee(employee: { employerId: any; lastName: any; months: void | undefined; phone: any; name: any; constructionSiteDto: {constructionSiteId:any; name: any; startDate: any; endDate: any; address: any } | undefined; salary: any; homeAddress: any }):Observable<Employee>{
     return this.http.put<Employee>(environment.backendHost+`/Employees`,employee);
   }
 

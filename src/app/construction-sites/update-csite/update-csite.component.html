@@ -1,0 +1,52 @@
+<div class="container">
+    <div mat-dialog-title>
+        <h3>Update Employee</h3>
+    </div>
+    <form [formGroup]="constructionSiteDtoForm" (ngSubmit)="onFormSubmit()">
+        <div mat-dialog-content class="content" >
+                <div class="row">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Construction Site</mat-label>
+                        <mat-select formControlName="name">
+                            <mat-option *ngFor="let CSNames of ConstructionSitesNames" [value]="CSNames">
+                                {{CSNames}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Start Date</mat-label>
+                        <input matInput [matDatepicker]="startDatePicker1" formControlName="startDate" (dateChange)="formatDate($event)">
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="startDatePicker1"></mat-datepicker-toggle>
+                        <mat-datepicker #startDatePicker1></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>End Date</mat-label>
+                        <input matInput [matDatepicker]="endDatePicker2" formControlName="endDate" (dateChange)="formatDate($event)">
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="endDatePicker2"></mat-datepicker-toggle>
+                        <mat-datepicker #endDatePicker2></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="row" style="margin-top: 7px;">
+                    <mat-form-field appearance="outline">
+                        <mat-label>CSite Address</mat-label>
+                        <input matInput type="texte"  placeholder="Ex. Rabat, Agdal..." formControlName="address">
+                    </mat-form-field>
+                </div>
+                <div class="row" style="display: none">
+                    <mat-form-field appearance="outline">
+                        <mat-label>constructionSiteId</mat-label>
+                        <input matInput type="texte"  placeholder="Ex. Rabat, Agdal..." formControlName="constructionSiteId">
+                    </mat-form-field>
+                </div>
+            </div>
+        <div mat-dialog-actions class="action">
+            <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+            <button mat-raised-button color="primary" type="submit">Update</button>
+        </div>
+    </form>
+</div>
+

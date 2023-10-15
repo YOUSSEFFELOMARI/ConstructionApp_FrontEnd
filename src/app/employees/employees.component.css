@@ -83,9 +83,16 @@ table {
 }
 
 td, th {
-  width: 25%;
-  /*text-align: center;*/
+  height: 8vh;
+  font-family: 'Onest', sans-serif;
+  font-weight: bold;
+  /*text-align: center!important;*/
 }
+span{
+  display: flex; align-items: center;
+
+}
+
 
 .example-card {
   max-width: 100%;
@@ -95,4 +102,7 @@ td, th {
 }
 .card2, .card{
   background-color: rgba(220, 220, 222, 0.49);
+
 }
+
+

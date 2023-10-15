@@ -1,0 +1,32 @@
+<mat-card class="monthcard">
+  <mat-card-content>
+    <div class="container">
+      <div class="d-flex flex-row">
+        <div class="d-flex justify-content-start">
+          <h4 class="">
+            <span class="badge bg-info  text-dark">
+              {{this.data.name}} {{this.data.lastName}}
+            </span >
+            : Info
+          </h4>
+        </div>
+        <div class="d-flex justify-content-end" >
+          <button mat-icon-button color="warn" [mat-dialog-close]="false">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+      </div>
+      <hr>
+      <div>
+          <ul>
+
+            <li *ngFor="let a of this.data.months">
+              {{a.monthId}}
+              {{a.date}}
+              {{a.payed}}
+            </li>
+          </ul>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

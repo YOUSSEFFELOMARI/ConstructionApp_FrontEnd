@@ -36,7 +36,7 @@ export class AuthService {
     this.username=undefined;
     this.accessToken=undefined;
     window.localStorage.removeItem("token")
-    this.router.navigateByUrl("/login")
+    this.router.navigateByUrl("/home")
   }
 
   loadJwtToken() {

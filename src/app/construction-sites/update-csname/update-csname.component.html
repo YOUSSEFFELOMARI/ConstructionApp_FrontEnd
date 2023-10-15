@@ -1,0 +1,26 @@
+<div class="container">
+  <div mat-dialog-title>
+    <h3>Update Employee</h3>
+  </div>
+  <form [formGroup]="constructionSiteNameForm" (ngSubmit)="onFormSubmit()">
+    <div mat-dialog-content class="content" >
+      <div class="row" style="margin-top: 7px;">
+        <mat-form-field appearance="outline">
+          <mat-label>CSite Name</mat-label>
+          <input matInput type="texte"  placeholder="Ex. Rabat, Agdal..." formControlName="name">
+        </mat-form-field>
+      </div>
+      <div class="row" style="display: none">
+        <mat-form-field appearance="outline">
+          <mat-label>constructionSiteId</mat-label>
+          <input matInput type="texte"  placeholder="Ex. Rabat, Agdal..." formControlName="constructionSiteNameId">
+        </mat-form-field>
+      </div>
+    </div>
+    <div mat-dialog-actions class="action">
+      <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+      <button mat-raised-button color="primary" type="submit">Update</button>
+    </div>
+  </form>
+</div>
+

@@ -1,0 +1,15 @@
+a{
+  height: 9vh;
+  font-weight: bold;
+  font-size: medium;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.nav-link.active {
+  color: red;
+}
+span{
+  margin-right: 8px;
+}

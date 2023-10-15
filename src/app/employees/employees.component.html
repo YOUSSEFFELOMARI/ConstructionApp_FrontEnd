@@ -5,7 +5,7 @@
           <h3 class="card-title mb-0">Employee</h3>
         </div>
         <div class="d-flex justify-content-end" >
-          <button type="submit" mat-stroked-button color="primary"
+          <button type="submit" mat-raised-button color="primary"
           (click)="openSaveEmployeeModal()" >Add Employee</button>
         </div>
     </div>
@@ -14,10 +14,8 @@
 
 <mat-card class="card2">
   <mat-card-header class="flex-column">
-<!--    <button type="submit" mat-raised-button color="primary"-->
-<!--            (click)="openSaveEmployeeModal()" style="margin: 20px 0">Add Employee</button>-->
     <mat-form-field>
-      <mat-label>Filter</mat-label>
+      <mat-label>Search</mat-label>
       <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Name Or LastName" #input>
     </mat-form-field>
   </mat-card-header>
@@ -45,11 +43,10 @@
         <!-- Month Column -->
         <ng-container matColumnDef="months">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Month </th>
-          <td mat-cell *matCellDef="let row">
-            <span >
+          <td mat-cell *matCellDef="let row" [ngStyle]="{'color': row.months[0]?.payed ? 'blue' : 'red'}">
+            <span>
 
               {{row.months[0]?.date | date:"MM-yyyy"}}
-              {{ row.months[0]?.payed ? 'Yes' : 'No' }}
               <button mat-icon-button (click)="openUpdateMonthModal(row)"
                       color="accent" data-bs-target="#updateMonthModal">
                 <mat-icon class="changeMonth">
@@ -97,9 +94,10 @@
                   edit
                 </mat-icon>
               </button>
-              <button mat-icon-button (click)="deleteEmployee(row.employerId)" color="warn">
+              <button mat-icon-button (click)="deleteEmployee(row)" color="warn">
                 <mat-icon>delete</mat-icon>
-              </button><button mat-icon-button >
+              </button>
+              <button mat-icon-button mat-icon-button (click)="openMonthDetials(row)">
               <mat-icon>info</mat-icon>
             </button>
             </div>
@@ -117,227 +115,10 @@
         </tr>
       </table>
 
-      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+      <mat-paginator [pageSizeOptions]="[10, 15, 25, 50]" aria-label="Select page of users"></mat-paginator>
     </div>
   </mat-card-content>
 </mat-card>
-
-
-
-<!--<div class="card" style="display: none;">-->
-<!--  <div class="card-header">-->
-<!--    <div class="container-fluid">-->
-<!--&lt;!&ndash;      <div class="row">&ndash;&gt;-->
-<!--      <div class="row align-items-center">-->
-<!--          <div class="col-lg-6 col-md-6 col-12" >-->
-<!--            <h3 class="card-title mb-0">Employees</h3>-->
-<!--          </div>-->
-<!--&lt;!&ndash;          <div class="col-auto">&ndash;&gt;-->
-<!--&lt;!&ndash;            <form class="row">&ndash;&gt;-->
-<!--&lt;!&ndash;              <div class="col-auto" >&ndash;&gt;-->
-<!--&lt;!&ndash;                <label for="inputPassword2" class="visually-hidden">Name & LastName</label>&ndash;&gt;-->
-<!--&lt;!&ndash;                <input type="text" class="form-control" id="inputPassword2" placeholder="Name & LastName">&ndash;&gt;-->
-<!--&lt;!&ndash;              </div>&ndash;&gt;-->
-<!--&lt;!&ndash;              <div class="col-auto" >&ndash;&gt;-->
-<!--&lt;!&ndash;                <button type="submit" class="btn btn-primary ">Search </button>&ndash;&gt;-->
-<!--&lt;!&ndash;              </div>&ndash;&gt;-->
-<!--&lt;!&ndash;            </form>&ndash;&gt;-->
-<!--&lt;!&ndash;          </div>&ndash;&gt;-->
-<!--&lt;!&ndash;        <div class="col-auto" >&ndash;&gt;-->
-<!--&lt;!&ndash;          <button type="submit" class="btn btn-primary btn-block">Add Employee</button>&ndash;&gt;-->
-<!--&lt;!&ndash;        </div>&ndash;&gt;-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-
-
-<!--  <div class="card-body">-->
-<!--    <div class="table-responsive">-->
-<!--      <table class="table align-middle mb-0 bg-white">-->
-<!--        <thead class="bg-light">-->
-<!--        <tr>-->
-<!--          <th>Name | Last Name</th>-->
-<!--          <th>Home Address</th>-->
-<!--          <th>Salary</th>-->
-<!--          <th>Phone Number</th>-->
-<!--          <th>Actual Month</th>-->
-<!--          <th>Construction Site</th>-->
-<!--          <th>Actions</th>-->
-<!--        </tr>-->
-<!--        </thead>-->
-<!--        <tbody>-->
-<!--        <tr *ngFor="let e of employees | async">-->
-<!--          <td>-->
-<!--            <div class="d-flex align-items-center">-->
-<!--              <img-->
-<!--                src="https://mdbootstrap.com/img/new/avatars/8.jpg"-->
-<!--                alt=""-->
-<!--                style="width: 45px; height: 45px"-->
-<!--                class="rounded-circle"-->
-<!--              />-->
-<!--              <div class="ms-3">-->
-<!--                <p class="fw-bold mb-1">{{e.name+" "+e.lastName}}</p>-->
-<!--                <p class="text-muted mb-0">{{e.lastName}}</p>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </td>-->
-<!--          <td>-->
-<!--            <p class="fw-normal mb-1">{{e.homeAddress}}</p>-->
-
-<!--          </td>-->
-<!--          <td>-->
-<!--            <span class="badge bg-success rounded-pill d-inline">{{e.salary}}</span>-->
-<!--          </td>-->
-<!--          <td>-->
-<!--            <span>{{e.phone}}</span>-->
-<!--          </td>-->
-<!--          <td>-->
-<!--            <div class="d-inline-flex align-items-center">-->
-<!--            <span class="badge rounded-pill d-inline"-->
-<!--                  [ngClass]="{'bg-info text-dark': e.months[0].payed,  'bg-danger text-light': !e.months[0].payed}"-->
-<!--                  *ngIf="e.months[0] != null">-->
-<!--              {{ e.months[0].date | date:'MM-yyyy' }} {{ e.months[0].payed ? 'Yes' : 'No' }}-->
-<!--            </span>-->
-<!--              <button mat-icon-button data-bs-toggle="modal" data-bs-target="#updateMonthModal1">-->
-<!--                <mat-icon class="changeMonth" >-->
-<!--                  currency_exchange-->
-<!--                </mat-icon>-->
-<!--              </button>-->
-<!--              &lt;!&ndash; Modal for update month[0]&ndash;&gt;-->
-<!--              <div class="modal fade" id="updateMonthModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">-->
-<!--                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">-->
-<!--                  <div class="modal-content">-->
-<!--                    <div class="modal-header">-->
-<!--                      <h5 class="modal-title" id="exampleModalLabel1">Modal title</h5>-->
-<!--                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
-<!--                    </div>-->
-<!--                    <div class="modal-body">-->
-<!--                      Are you sure-->
-<!--                    </div>-->
-<!--                    <div class="modal-footer">-->
-<!--                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
-<!--                      <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="changeMonthPayed(e.months[0])">Update</button>-->
-<!--                    </div>-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--              &lt;!&ndash; Modal for update month[0]&ndash;&gt;-->
-<!--            </div>-->
-<!--          </td>-->
-<!--          <td>-->
-<!--            <span *ngIf="e?.constructionSiteDto" >-->
-<!--                {{e.constructionSiteDto.address}}-->
-<!--            </span>-->
-<!--          </td>-->
-<!--          <td>-->
-<!--            &lt;!&ndash; Button trigger modal &ndash;&gt;-->
-<!--            <div class="d-inline-flex align-items-center">-->
-<!--              <button mat-icon-button >-->
-<!--                <mat-icon>-->
-<!--                  edit-->
-<!--                </mat-icon>-->
-<!--              </button>-->
-<!--              <button mat-icon-button >-->
-<!--                <mat-icon>delete</mat-icon>-->
-<!--              </button><button mat-icon-button >-->
-<!--                <mat-icon>info</mat-icon>-->
-<!--              </button>-->
-<!--            </div>-->
-<!--          </td>-->
-<!--        </tr>-->
-
-<!--        </tbody>-->
-<!--      </table>-->
-<!--      <div class="pagination">-->
-<!--        <nav aria-label="Page navigation example">-->
-<!--          <ul class="pagination justify-content-end ">-->
-<!--            <li >-->
-<!--              <a class="btn btn-outline-info ms-1 mt-1" >-->
-<!--                <span aria-hidden="true">&laquo;</span>-->
-<!--              </a>-->
-<!--            </li>-->
-<!--&lt;!&ndash;            <li class="page-item"><a class="page-link" href="#">1</a></li>&ndash;&gt;-->
-<!--            <li-->
-<!--              *ngFor="let page of pageNumbers;" >-->
-<!--              <a [ngClass]="page==currentPage?'btn-info':'btn-outline-info'" (click)="gotoPage(page)"-->
-<!--                class="btn ms-1 mt-1">{{page}}</a>-->
-<!--            </li>-->
-<!--            <li>-->
-<!--              <a class="btn btn-outline-info ms-1 mt-1">-->
-<!--                <span aria-hidden="true">&raquo;</span>-->
-<!--              </a>-->
-<!--            </li>-->
-<!--          </ul>-->
-<!--        </nav>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
-
-
-
-
-<!-- Modal for update employee-->
-<!--<div class="modal" id="myModal">-->
-<!--  <div class="modal-dialog">-->
-<!--    <div class="modal-content">-->
-
-<!--      &lt;!&ndash; Modal Header &ndash;&gt;-->
-<!--      <div class="modal-header">-->
-<!--        <h4 class="modal-title">Employee Information</h4>-->
-<!--        <button type="button" (click)="closeEditEmployeeModel()" class="btn-close" data-bs-dismiss="modal"></button>-->
-<!--      </div>-->
-
-<!--      &lt;!&ndash; Modal body &ndash;&gt;-->
-<!--      <div class="modal-body">-->
-<!--        <div class="container">-->
-<!--          <form>-->
-<!--            <div class="mb-3">-->
-<!--              <label for="employerId" class="form-label">Employer ID</label>-->
-<!--              <input type="number" class="form-control" id="employerId" name="employerId" value="2">-->
-<!--            </div>-->
-<!--            <div class="mb-3">-->
-<!--              <label for="name" class="form-label">Name</label>-->
-<!--              <input type="text" class="form-control" id="name" name="name" value="Youssef2">-->
-<!--            </div>-->
-<!--            <div class="mb-3">-->
-<!--              <label for="lastName" class="form-label">Last Name</label>-->
-<!--              <input type="text" class="form-control" id="lastName" name="lastName" value="Elomari2">-->
-<!--            </div>-->
-<!--            <div class="mb-3">-->
-<!--              <label for="homeAddress" class="form-label">Home Address</label>-->
-<!--              <input type="text" class="form-control" id="homeAddress" name="homeAddress" value="agadir">-->
-<!--            </div>-->
-<!--            <div class="mb-3">-->
-<!--              <label for="salary" class="form-label">Salary</label>-->
-<!--              <input type="number" class="form-control" id="salary" name="salary" value="11111.0">-->
-<!--            </div>-->
-<!--            <div class="mb-3">-->
-<!--              <label for="phone" class="form-label">Phone</label>-->
-<!--              <input type="tel" class="form-control" id="phone" name="phone" value="0655487895">-->
-<!--            </div>-->
-<!--            <div class="mb-3">-->
-<!--              <label for="constructionSiteName" class="form-label">Construction Site Name</label>-->
-<!--              <input type="text" class="form-control" id="constructionSiteName" name="constructionSiteName" value="ter">-->
-<!--            </div>-->
-<!--            <button type="submit" class="btn btn-primary" >Submit</button>-->
-<!--          </form>-->
-<!--        </div>-->
-
-
-<!--      </div>-->
-
-<!--      &lt;!&ndash; Modal footer &ndash;&gt;-->
-<!--      <div class="modal-footer">-->
-<!--        <button type="button" class="btn btn-danger" (click)="closeEditEmployeeModel()" data-bs-dismiss="modal">Close</button>-->
-<!--      </div>-->
-
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
-
-
-
 
 
 

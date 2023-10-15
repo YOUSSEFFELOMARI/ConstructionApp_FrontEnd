@@ -1,0 +1,18 @@
+<div mat-dialog-title>
+  <h3>Delete Employee</h3>
+</div>
+<div mat-dialog-content class="content" >
+  <p style="text-align: center">
+    Are You Sure
+    You want to delete
+    <span style="font-weight: bolder">
+    {{this.data.name+" "+this.data.lastName}}
+    </span>
+  </p>
+</div>
+<div mat-dialog-actions class="action">
+  <button class="bttn1" mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+  <button class="bttn1" mat-raised-button color="warn" type="submit" (click)="deleteEmployee()">
+    Delete
+  </button>
+</div>

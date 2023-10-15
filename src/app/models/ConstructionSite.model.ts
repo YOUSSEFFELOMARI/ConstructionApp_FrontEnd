@@ -1,4 +1,5 @@
-export interface ConstructionStieDto{
+export interface ConstructionSiteDto{
+  constructionSiteId:string;
   name:string;
   startDate:string;
   endDate:string;

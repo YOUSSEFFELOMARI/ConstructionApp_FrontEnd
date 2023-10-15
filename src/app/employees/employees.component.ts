@@ -13,6 +13,8 @@ import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {UpdateEmplyeeComponent} from "./update-emplyee/update-emplyee.component";
 import {UpdateMonthComponent} from "./update-month/update-month.component";
+import {MonthsComponent} from "./months/months.component";
+import {DeleteComponent} from "./delete/delete.component";
 
 
 @Component({
@@ -33,9 +35,6 @@ export class EmployeesComponent {
 
   employees !: Observable<Array<Employee>>;
   errorMessage!: string;
-  currentPage : number =1;
-  pageSize : number =5;
-  pageNumbers: number[] = [];
 
   constructor(private employeeService:EmployeeService
                 ,private formBuilder:FormBuilder
@@ -43,32 +42,19 @@ export class EmployeesComponent {
                 ,private _dialog:MatDialog) {}
 
   openSaveEmployeeModal(){
-    this._dialog.open(SaveEmplyeeModalComponent);
+    const dialogRef=this._dialog.open(SaveEmplyeeModalComponent);
+    dialogRef.afterClosed().subscribe({
+      next:(value)=>{
+          this.getEmployeesList();
+      }
+    })
   }
 
   ngOnInit(){
     this.getEmployeesList();
-    this.getEmployeesPages();
-    this.numberOfpages();
   }
 
-  getEmployeesPages(){
-    this.employees = this.employeeService.getEmployees(this.currentPage, this.pageSize).pipe(
-      catchError(err => {
-        this.errorMessage = err.message;
-        return throwError(err);
-      }),
-      map(employees => {
-        // Sort the months within each employee in descending order (most recent to oldest)
-        return employees.map(employee => ({
-          ...employee,
-          months: employee.months.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-        }));
-      })
-    );
-  }
 
-// ...
 
 getEmployeesList() {
   this.employeeService.getAllEmployeesList().pipe(
@@ -93,36 +79,15 @@ getEmployeesList() {
 
 
 openEditEmployeeModel(data:any) {
-    this._dialog.open(UpdateEmplyeeComponent,{
+    const dialogRef=this._dialog.open(UpdateEmplyeeComponent,{
       data,
+    });
+    dialogRef.afterClosed().subscribe({
+      next:(value)=>{
+          this.getEmployeesList();
+      }
     })
   }
-
-  closeEditEmployeeModel() {
-    let modelDev=document.getElementById('myModal');
-    if (modelDev != null){
-      modelDev.style.display='none';
-    }
-  }
-
-  gotoPage(page: number) {
-    this.currentPage=page;
-    this.employees=this.employeeService.getEmployees(page,this.pageSize).pipe(
-      catchError(err => {
-        this.errorMessage=err.message;
-        return throwError(err);
-      })
-    );
-  }
-
-  numberOfpages() {
-    this.employeeService.countEmployees().subscribe((totalEmployees: number) => {
-      const totalPages = Math.ceil(totalEmployees / this.pageSize);
-      this.pageNumbers = Array.from({ length: totalPages }, (_, index) => index+1);
-    });
-  }
-
-
 
   applyFilter(event: Event) {
       const filterValue = (event.target as HTMLInputElement).value;
@@ -133,19 +98,25 @@ openEditEmployeeModel(data:any) {
       }
     }
 
-  deleteEmployee(id:number){
-    console.log(id)
-    this.employeeService.deleteEMployee(id).subscribe({
+  deleteEmployee(data:any){
+    const dialogRef=this._dialog.open(DeleteComponent,{
+      data,
+    })
+    dialogRef.afterClosed().subscribe({
       next:(value)=>{
         this.getEmployeesList();
-        //TODO:open message to confirme deletion
-      },
-      error: (err)=> throwError(err)
+      }
     })
   }
 
   openUpdateMonthModal(data:any) {
     this._dialog.open(UpdateMonthComponent,{
+      data,
+    })
+  }
+
+  openMonthDetials(data:any) {
+    this._dialog.open(MonthsComponent,{
       data,
     })
   }
