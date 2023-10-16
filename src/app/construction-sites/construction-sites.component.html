@@ -45,9 +45,6 @@
               <button mat-icon-button (click)="deleteCSiteName(row)" color="warn">
                 <mat-icon>delete</mat-icon>
               </button>
-              <button mat-icon-button >
-                <mat-icon>info</mat-icon>
-              </button>
             </div>
           </td>
         </ng-container>
@@ -128,9 +125,7 @@
                             <button mat-icon-button (click)="deleteCSite(row)" color="warn">
                                 <mat-icon>delete</mat-icon>
                             </button>
-                            <button mat-icon-button >
-                                <mat-icon>info</mat-icon>
-                            </button>
+
                         </div>
                     </td>
                 </ng-container>
@@ -146,7 +141,7 @@
                 </tr>
             </table>
 
-            <mat-paginator #paginatorBottom [pageSizeOptions]="[5, 15, 25, 50]" aria-label="Select page of CSites"></mat-paginator>
+            <mat-paginator #paginatorBottom [pageSizeOptions]="[3, 9 , 18, 36, 50]" aria-label="Select page of CSites"></mat-paginator>
         </div>
     </mat-card-content>
 </mat-card>

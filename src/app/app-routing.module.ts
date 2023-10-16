@@ -10,14 +10,13 @@ import {HomePageComponent} from "./home-page/home-page.component";
 
 
 const routes: Routes = [
-  {path: '', redirectTo: '/login', pathMatch:"full"},
+  {path: '', redirectTo: '/home', pathMatch:"full"},
   {path: 'login' ,component: LoginPageComponent},
   {path: 'home' ,component: HomePageComponent},
   {path:'admin', component: AdminDashboardComponent, canActivate: [authGuard], children :[
       {path: 'employee' ,component: EmployeesComponent},
       {path: 'constructionSite' ,component: ConstructionSitesComponent},
-      {path: 'months' ,component: MonthsComponent}
-    ]}
+      {path: 'months' ,component: MonthsComponent}]}
 ];
 
 @NgModule({

@@ -6,6 +6,61 @@
   justify-content: space-between;
 }
 .monthcard{
-  background-color: rgba(170, 170, 183, 0.49);
+  /*background-color: rgba(170, 170, 183, 0.49);*/
 
 }
+/*ul{*/
+/*  list-style-type: none;*/
+/*}*/
+/*li{*/
+/*  background-color: rgb(128, 128, 128);*/
+/*  color: white;*/
+/*  width: fit-content;*/
+/*  */
+/*}*/
+
+/* Remove default list styles */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Style list items */
+li {
+  margin: 10px 0; /* Add space between list items */
+  padding: 10px 20px; /* Add padding to the list items */
+  background-color: #FFF3CD; /* Background color */
+  border: 1px solid #ccc; /* Border around list items */
+  border-radius: 5px; /* Rounded corners */
+  font-size: 16px; /* Font size */
+}
+
+/* Style list item on hover */
+li:hover {
+  background-color: #e0e0e0; /* Change background color on hover */
+}
+
+/* Add margin to the list container */
+ul {
+  margin: 20px 0;
+}
+.mat-card.scrollable-content{
+  display: flex;
+  flex-direction: column;
+}
+
+.mat-card.scrollable-content mat-card-content {
+  overflow-y: auto;
+}
+.mat-card.scrollable-content mat-card-title {
+  display: block;
+}
+.mat-tab-body-content {
+  overflow: hidden !important;
+}
+
+.mat-tab-body-wrapper {
+  height: 100% !important;
+}
+
