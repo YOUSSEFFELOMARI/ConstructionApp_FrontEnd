@@ -32,7 +32,7 @@
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Phone Number</mat-label>
-          <input matInput type="texte"  placeholder="Ex. 0654988996" formControlName="phone" required>
+          <input matInput type="texte"  placeholder="Ex. 0654988996" formControlName="phone" pattern="0[0-9]{9}" required>
         </mat-form-field>
       </div>
       <div formGroupName="constructionSiteDto">

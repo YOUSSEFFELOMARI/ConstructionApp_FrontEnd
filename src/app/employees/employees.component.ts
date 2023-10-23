@@ -68,6 +68,12 @@ getEmployeesList() {
   ).subscribe({
     next: (res) => {
       this.dataSource = new MatTableDataSource<any>(res);
+      this.dataSource.filterPredicate = (data: Employee, filter: string) => {
+        return data.name.toLocaleLowerCase().includes(filter) ||
+          data.lastName.toLocaleLowerCase().includes(filter) ||
+          data.homeAddress.toLocaleLowerCase().includes(filter) ||
+          data.constructionSiteDto?.name.toLocaleLowerCase().includes(filter);
+      }
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
     },
@@ -97,6 +103,8 @@ openEditEmployeeModel(data:any) {
         this.dataSource.paginator.firstPage();
       }
     }
+
+
 
   deleteEmployee(data:any){
     const dialogRef=this._dialog.open(DeleteComponent,{
