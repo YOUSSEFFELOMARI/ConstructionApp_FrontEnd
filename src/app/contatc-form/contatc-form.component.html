@@ -1,0 +1,67 @@
+<!-- Section: Design Block -->
+<section class="text-center">
+  <!-- Background image -->
+  <div class="p-5 bg-image" style="
+        background-image: url('https://commercial.allianz.com/content/onemarketing/commercial/commercial/en_GB/news-and-insights/reports/global-industry-solution-outlook-2023-construction.thumb.1280.1280.png?ck=1693564996');
+        height: 100vh;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        "></div>
+  <!-- Background image -->
+
+  <div class="card mx-4 mx-md-5 shadow-5-strong" style="
+        margin-top: -90vh;
+        background: hsla(0, 0%, 100%, 0.6);
+        backdrop-filter: blur(20px);
+        margin-left: 20vw!important;
+        max-width: 60vw;
+        ">
+    <div class="card-body py-5 px-md-5">
+
+      <div class="row d-flex justify-content-center">
+        <div class="col-lg-8">
+          <h2 class="fw-bold mb-5">Contact</h2>
+
+          <form [formGroup]="ContactForm" (ngSubmit)="onFormSubmit()">
+            <div class="content" >
+              <div class="col">
+                <mat-form-field appearance="outline">
+                  <mat-label>First Name</mat-label>
+                  <input matInput type="texte"  placeholder="Ex. Youssef" formControlName="name" required>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                  <mat-label>Last Name</mat-label>
+                  <input matInput type="texte"  placeholder="Ex. Lemrini" formControlName="lastName" required>
+                </mat-form-field>
+              </div>
+              <div class="row">
+                <mat-form-field appearance="outline">
+                  <mat-label>Phone Number</mat-label>
+                  <input matInput type="texte"  placeholder="Ex. 0654988996" formControlName="phone" pattern="0[0-9]{9}" required  >
+                </mat-form-field>
+              </div>
+              <div class="col">
+                <mat-form-field appearance="outline">
+                  <mat-label>Email</mat-label>
+                  <input matInput type="texte"  placeholder="Ex. abcdef@gmail.com" formControlName="email" required>
+                </mat-form-field>
+              </div>
+              <div class="col">
+                <mat-form-field appearance="outline" style="height: 20vh; text-align: left ;" >
+                  <mat-label>Subject</mat-label>
+                  <input matInput type="texte"  placeholder="Ex. what do you wnat to say" formControlName="subject" required>
+                </mat-form-field>
+              </div>
+              <div mat-dialog-actions class="action">
+                <button mat-raised-button  color="primary" type="submit">Envoyer</button>
+              </div>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Section: Design Block -->

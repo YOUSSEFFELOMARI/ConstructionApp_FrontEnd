@@ -39,6 +39,8 @@ import { DeleteCSNameComponent } from './construction-sites/delete-csname/delete
 import { UpdateCSNameComponent } from './construction-sites/update-csname/update-csname.component';
 import { SaveCSNameComponent } from './construction-sites/save-csname/save-csname.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { ContatcFormComponent } from './contatc-form/contatc-form.component';
+import {NgOptimizedImage} from "@angular/common";
 
 
 
@@ -66,7 +68,8 @@ import { HomePageComponent } from './home-page/home-page.component';
     DeleteCSNameComponent,
     UpdateCSNameComponent,
     SaveCSNameComponent,
-    HomePageComponent
+    HomePageComponent,
+    ContatcFormComponent
   ],
   imports: [
     BrowserModule,
@@ -87,7 +90,8 @@ import { HomePageComponent } from './home-page/home-page.component';
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    NgOptimizedImage
 
   ],
   providers: [
