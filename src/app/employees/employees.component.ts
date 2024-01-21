@@ -68,7 +68,7 @@ getEmployeesList() {
   ).subscribe({
     next: (res) => {
       this.dataSource = new MatTableDataSource<any>(res);
-      this.dataSource.filterPredicate = (data: Employee, filter: string) => {
+      this.dataSource.filterPredicate = (data: any, filter: string) => {
         return data.name.toLocaleLowerCase().includes(filter) ||
           data.lastName.toLocaleLowerCase().includes(filter) ||
           data.homeAddress.toLocaleLowerCase().includes(filter) ||
