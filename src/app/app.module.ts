@@ -43,10 +43,6 @@ import { ContatcFormComponent } from './contatc-form/contatc-form.component';
 import {NgOptimizedImage} from "@angular/common";
 
 
-
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
