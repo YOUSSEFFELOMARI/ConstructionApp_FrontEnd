@@ -6,6 +6,8 @@ import {DatePipe} from "@angular/common";
 import {MatDatepickerInputEvent} from "@angular/material/datepicker";
 import {CoreService} from "../../services/core/core-service.service";
 import {CSiteNameService} from "../../services/csite-name.service";
+import {Month} from "../../models/Month.model";
+import {MonthService} from "../../services/month.service";
 
 @Component({
     selector: 'app-save-emplyee-modal',
@@ -84,7 +86,8 @@ export class SaveEmplyeeModalComponent {
                 };
                 salary: any; homeAddress: any
             } = this.mapFormToEmployee();
-            if (
+
+          if (
                 employeeModel.constructionSiteDto.name === '' &&
                 employeeModel.constructionSiteDto.address === '' &&
                 employeeModel.constructionSiteDto.startDate === '' &&
@@ -118,6 +121,7 @@ export class SaveEmplyeeModalComponent {
                     this.coreService.openSnackBar(err);
                 }
             });
+
         }
     }
 

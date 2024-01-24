@@ -18,7 +18,7 @@ export class MonthService {
     return this.http.get<Month>(environment.backendHost+`/Months/${id}`);
   }
 
-  public saveMonth(month:Month):Observable<Month>{
+  public saveMonth(month:any):Observable<Month>{
     return this.http.post<Month>(environment.backendHost+`/Months`,month);
   }
 
