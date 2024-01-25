@@ -1,4 +1,4 @@
 export const environment = {
-  production: true,
-  backendHost: 'https://constructionapp-front.web.app/api/v1',
+  production: false,
+  backendHost: 'https://constructionapp-5wbh.onrender.com/api/v1',
 };
