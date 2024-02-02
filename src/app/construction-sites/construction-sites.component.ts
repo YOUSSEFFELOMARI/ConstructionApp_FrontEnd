@@ -50,7 +50,6 @@ export class ConstructionSitesComponent {
         this.getCsiteNameList();
   }
 
-  //TODO: get all Employee and extract employee name with CSties if You Want
   getCsiteNameList() {
     this.cSiteNameService.getAllCSiteNameList().pipe().subscribe({
       next: (res) => {

@@ -27,10 +27,11 @@
                 <span class="badge bg-secondary">{{a.monthId}}</span>
               </span>
               <span style="font-weight: bold">{{a.date}}</span>
-              <span class="badge d-inline" [ngClass]="{'bg-info': a.payed, 'bg-danger': !a.payed}">{{a.payed}}</span>
+              <span class="badge d-inline" [ngClass]="{'bg-info': a.payed, 'bg-danger': !a.payed}">
+                {{a.payed == true ? 'payed' : 'Not payed'}}
+              </span>
             </li>
           </ul>
-
     </div>
   </mat-card-content>
 </mat-card>

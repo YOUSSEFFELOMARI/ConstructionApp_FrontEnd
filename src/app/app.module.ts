@@ -41,6 +41,10 @@ import { SaveCSNameComponent } from './construction-sites/save-csname/save-csnam
 import { HomePageComponent } from './home-page/home-page.component';
 import { ContatcFormComponent } from './contatc-form/contatc-form.component';
 import {NgOptimizedImage} from "@angular/common";
+import { ContactComponent } from './contact/contact.component';
+import { UpdateMessageComponent } from './contact/update-message/update-message.component';
+import { DeleteMessageComponent } from './contact/delete-message/delete-message.component';
+import { MessageDetailsComponent } from './contact/message-details/message-details.component';
 
 
 @NgModule({
@@ -65,7 +69,11 @@ import {NgOptimizedImage} from "@angular/common";
     UpdateCSNameComponent,
     SaveCSNameComponent,
     HomePageComponent,
-    ContatcFormComponent
+    ContatcFormComponent,
+    ContactComponent,
+    UpdateMessageComponent,
+    DeleteMessageComponent,
+    MessageDetailsComponent
   ],
   imports: [
     BrowserModule,

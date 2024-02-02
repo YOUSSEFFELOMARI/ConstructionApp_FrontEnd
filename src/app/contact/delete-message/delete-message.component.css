@@ -8,7 +8,9 @@
     width: 100%;
   }
 }
-
+h3{
+  text-align: center;
+}
 .action{
   padding: 0 50px 50px;
   & button{
@@ -16,9 +18,7 @@
     flex: 4;
   }
 }
-h3{
-  text-align: center;
-}
+
 .container{
   width: 30vw;
   display: block;
