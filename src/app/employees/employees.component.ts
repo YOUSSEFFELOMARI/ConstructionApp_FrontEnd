@@ -124,8 +124,13 @@ openEditEmployeeModel(data:any) {
   }
 
   openMonthDetials(data:any) {
-    this._dialog.open(MonthsComponent,{
+    const dialogRef=this._dialog.open(MonthsComponent,{
       data,
+    })
+    dialogRef.afterClosed().subscribe({
+      next:(value)=>{
+        this.getEmployeesList();
+      }
     })
   }
 }

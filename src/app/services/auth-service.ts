@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import jwtDecode from "jwt-decode";
 import {Router} from "@angular/router";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class AuthService {
       email: email,
       password: password,
     };
-    return  this.http.post("http://localhost:8080/auth/login",body,options)
+    return  this.http.post(environment.loginServer,body,options)
   }
 
   loadProfile(data: any) {

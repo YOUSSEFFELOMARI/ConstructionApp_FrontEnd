@@ -20,3 +20,7 @@
 h3{
   text-align: center
 }
+.container{
+  width: 30vw;
+  display: block;
+}

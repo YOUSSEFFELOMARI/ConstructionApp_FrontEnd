@@ -56,3 +56,15 @@ ul {
   height: 100% !important;
 }
 
+.details{
+  line-height: 50px;
+  font-weight: bold;
+}
+
+span{
+  font-weight: 550;
+}
+.execlude{
+  font-weight: 550;
+  line-height: 25px;
+}

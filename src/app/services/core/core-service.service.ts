@@ -17,4 +17,12 @@ export class CoreService {
       verticalPosition: this.verticalPosition,
     });
   }
+
+  openSnackBarWithDiffPostion(message:string,action:string ='ok') {
+    this._snackBar.open(message, action, {
+      duration:5000,
+      horizontalPosition: 'right',
+      verticalPosition: this.verticalPosition,
+    });
+  }
 }

@@ -8,6 +8,7 @@ import {ConstructionSitesComponent} from "./construction-sites/construction-site
 import {MonthsComponent} from "./employees/months/months.component";
 import {HomePageComponent} from "./home-page/home-page.component";
 import {ContatcFormComponent} from "./contatc-form/contatc-form.component";
+import {ContactComponent} from "./contact/contact.component";
 
 
 const routes: Routes = [
@@ -18,7 +19,9 @@ const routes: Routes = [
   {path:'admin', component: AdminDashboardComponent, canActivate: [authGuard], children :[
       {path: 'employee' ,component: EmployeesComponent},
       {path: 'constructionSite' ,component: ConstructionSitesComponent},
-      {path: 'months' ,component: MonthsComponent}]}
+      {path: 'contact' ,component: ContactComponent}
+    ]
+  }
 ];
 
 @NgModule({

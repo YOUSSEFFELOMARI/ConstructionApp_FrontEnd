@@ -43,18 +43,15 @@
         <!-- Month Column -->
         <ng-container matColumnDef="months">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Month </th>
-          <td mat-cell *matCellDef="let row" [ngStyle]="{'color': row.months[0]?.payed ? 'blue' : 'red'}">
-            <span>
-
+            <td mat-cell *matCellDef="let row" [ngStyle]="{'color': row.months[0]?.payed ? '#0c18b3' : 'red'}">
+            <span style="white-space: nowrap">
               {{row.months[0]?.date | date:"MM-yyyy"}}
               <button mat-icon-button (click)="openUpdateMonthModal(row)"
                       color="accent" data-bs-target="#updateMonthModal">
-                <mat-icon class="changeMonth">
+                <mat-icon class="changeMonth" style="color: #fcad03">
                   currency_exchange
                 </mat-icon>
               </button>
-                <!-- Modal for update month[0]-->
-
             </span>
           </td>
         </ng-container>
@@ -95,7 +92,7 @@
                 </mat-icon>
               </button>
               <button mat-icon-button (click)="deleteEmployee(row)" color="warn">
-                <mat-icon>delete</mat-icon>
+                <mat-icon style="color: #cc0404">delete</mat-icon>
               </button>
               <button mat-icon-button mat-icon-button (click)="openMonthDetials(row)">
               <mat-icon>info</mat-icon>

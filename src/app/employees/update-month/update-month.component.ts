@@ -17,10 +17,9 @@ export class UpdateMonthComponent implements OnInit{
   }
 
   ngOnInit() {
-      // console.log(this.data)
   }
 
-    changeMonthPayed() {
+  changeMonthPayed() {
     if(this.data.months.length === 0){
       this.dialogref.close();
     }else{
@@ -30,7 +29,7 @@ export class UpdateMonthComponent implements OnInit{
             this.coreService.openSnackBar('Month Updated','done');
             this.dialogref.close();      },
         error:(err)=>{
-            this.coreService.openSnackBar(err);
+            this.coreService.openSnackBar("Erreur!!");
         }
       });
     }
